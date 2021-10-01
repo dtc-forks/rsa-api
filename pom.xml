@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright (C) 2021, Søren Thalbitzer Poulsen. All rights reserved.
+  ~
+  ~ This code is subject to the terms of the GNU General Public License Version 2
+  ~ with "Classpath" exception. The terms are listed in the LICENSE file that
+  ~ accompanies this work. You may not distribute and/or use this code except in
+  ~ compliance with the license.
+  -->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.bagsvaerd-crypto</groupId>
+    <artifactId>rsa-api</artifactId>
+    <version>1.0.0</version>
+
+    <name>Bagsværd Crypto RSA API</name>
+    <description>Bagsværd Crypto RSA API implements a subset of IETF RFC 8017 "PKCS #1: RSA Cryptography Specifications
+        Version 2.2"
+    </description>
+    <url>https://github.com/SorenPoulsen/rsa-api</url>
+
+    <licenses>
+        <license>
+            <name>GNU General Public License v2 with classpath exception</name>
+            <url>https://github.com/SorenPoulsen/rsa-api/blob/master/LICENSE</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>Søren Thalbitzer Poulsen</name>
+            <organization>Bagsværd Crypto</organization>
+            <organizationUrl>http://bagsvaerd-crypto.com</organizationUrl>
+        </developer>
+    </developers>
+
+    <scm>
+        <connection>scm:git:git://github.com/SorenPoulsen/rsa-api.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com:SorenPoulsen/rsa-api.git</developerConnection>
+        <url>https://github.com/SorenPoulsen/rsa-api</url>
+    </scm>
+
+    <properties>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>5.7.2</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.3.0</version>
+                <configuration>
+                    <encoding>UTF-8</encoding>
+                    <windowtitle>Bagsværd Crypto RSA API</windowtitle>
+                    <doctitle>Bagsværd Crypto RSA API ${project.version}</doctitle>
+                    <bottom>
+                        <![CDATA[Copyright &copy; 2021, Søren Thalbitzer Poulsen. All rights reserved.]]>
+                    </bottom>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>2.4</version>
+                <configuration>
+                    <archive>
+                        <manifestEntries>
+                            <built-by>someone</built-by>
+                        </manifestEntries>
+                    </archive>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>ossrh</id>
+            <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
+
+</project>

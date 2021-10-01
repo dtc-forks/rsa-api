@@ -1,0 +1,118 @@
+<!--
+  ~ Copyright (C) 2021, Søren Thalbitzer Poulsen. All rights reserved.
+  ~
+  ~ This code is subject to the terms of the GNU General Public License Version 2
+  ~ with "Classpath" exception. The terms are listed in the LICENSE file that
+  ~ accompanies this work. You may not distribute and/or use this code except in
+  ~ compliance with the license.
+  -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bagsværd Crypto RSA API Overview</title>
+</head>
+<body>
+<style>
+    table.cryptotable {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+
+    .cryptotable td, th {
+        border: 1px solid black;
+        padding: 0.2em;
+    }
+</style>
+<h1>Overview</h1>
+<p>
+    Bagsværd Crypto RSA API implements a subset of IETF RFC 8017 "PKCS #1: RSA Cryptography Specifications Version 2.2".
+<p>
+    The API supports these major features:
+<table class="cryptotable">
+    <thead>
+    <tr>
+        <th></th>
+        <th>RFC 8017 schemes</th>
+        <th>Padding</th>
+        <th>Mask Generating Function</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>Encrypt</td>
+        <td>RSAES-OAEP-ENCRYPT</td>
+        <td>EME-OAEP</td>
+        <td>MGF1</td>
+    </tr>
+    <tr>
+        <td>Decrypt</td>
+        <td>RSAES-OAEP-DECRYPT</td>
+        <td>EME-OAEP</td>
+        <td>MGF1</td>
+    </tr>
+    <tr>
+        <td>Sign</td>
+        <td>RSASSA-PSS-SIGN</td>
+        <td>EMSA-PSS</td>
+        <td>MGF1</td>
+    </tr>
+    <tr>
+        <td>Verify</td>
+        <td>RSASSA-PSS-VERIFY</td>
+        <td>EMSA-PSS</td>
+        <td>MGF1</td>
+    </tr>
+    </tbody>
+</table>
+<p>
+    Supported key encoding:
+<table class="cryptotable">
+    <tr>
+        <th></th>
+        <th>Private key</th>
+        <th>Public key</th>
+    </tr>
+    <tr>
+        <td>Encode</td>
+        <td>DER PKCS8, DER PKCS1</td>
+        <td>DER PKCS1</td>
+    </tr>
+    <tr>
+        <td>Decode</td>
+        <td>DER PKCS8, DER PKCS1</td>
+        <td>DER PKCS1</td>
+    </tr>
+</table>
+<h1>Design Goals</h1>
+<ul>
+    <li>Implement encryption and signing features of IETF RFC 8017* with OAEP and PSS padding.</li>
+    <li>Sourcecode speaks the "language" of RFC 8017 when possible to make assessment of correctness easier.
+    </li>
+    <li>Lightweight with few or no dependencies other than the Java Standard API.</li>
+    <li> Is not a JCA provider and does not
+        publish security primitives from JCA through its own public API.
+    </li>
+    <li>Limited support for PKCS1 and PKCS8 ASN.1 key schemas and X.690 DER encoding and decoding of keys.
+    </li>
+</ul>
+<p>
+    * Limitations:
+<ul>
+    <li>Limited to two prime factors P and Q.
+    </li>
+    <li>Legacy crypto schemes using EME-PKCS1-v1_5 and EMSA-PKCS1-v1_5 padding are not supported.</li>
+</ul>
+* Extensions:
+<ul>
+    <li>Imposes additional constraints on generated public and private keys.</li>
+    <li>Implements blinding of private exponent d.</li>
+</ul>
+<h1>License</h1>
+<p> Bagsværd Crypto RSA API is subject to the terms of the GNU General Public License Version 2 with "Classpath"
+    exception. The terms are listed in the LICENSE file that accompanies this work. You may not distribute and/or use
+    this code except in compliance with the license.
+</p>
+</body>
+</html>
